@@ -1,4 +1,5 @@
 ﻿using BLL.Shared.Dtos;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace BLL.Services.Abstractions
     {
         Task<IEnumerable<UrlDto>> GetAllUrlsAsync();
         Task<UrlDto> GetUrlByIdAsync(Guid id);
-        Task<UrlDto> CreateUrlAsync(UrlForCreationDto urlForCreationDto, Guid userId);
+        Task<Url> CreateUrlAsync(UrlForCreationDto urlForCreationDto, Guid userId);
         Task<bool> DeleteUrlAsync(Guid id, Guid userId, string userRole);
         Task<bool> UrlExistsAsync(string originalUrl);
         Task<bool> ShortUrlExistsAsync(string shortUrl);

@@ -39,7 +39,7 @@ namespace BLL.Services
             return _mapper.Map<UrlDto>(url);
         }
 
-        public async Task<UrlDto> CreateUrlAsync(UrlForCreationDto urlForCreationDto, Guid userId)
+        public async Task<Url> CreateUrlAsync(UrlForCreationDto urlForCreationDto, Guid userId)
         {
             if (await UrlExistsAsync(urlForCreationDto.OriginalUrl))
                 throw new Exception("Такий URL вже існує.");
@@ -52,18 +52,13 @@ namespace BLL.Services
             while (await ShortUrlExistsAsync(shortUrl));
 
             var url = _mapper.Map<Url>(urlForCreationDto);
+            url.ShortUrl = shortUrl;
+            url.CreatedByUserId = userId;
 
             await _unitOfWork.Urls.AddAsync(url);
             await _unitOfWork.SaveChangesAsync();
 
-            return new UrlDto
-            {
-                Id = url.Id,
-                CreatedAt = url.CreatedAt,
-                OriginalUrl = url.OriginalUrl,
-                ShortUrl = url.ShortUrl,
-                CreatedByUserId = url.CreatedByUserId
-            };
+            return url;
         }
 
         public async Task<bool> DeleteUrlAsync(Guid id, Guid userId, string userRole)
@@ -110,5 +105,7 @@ namespace BLL.Services
             var urls = await _unitOfWork.Urls.FindAsync(u => u.CreatedByUserId == userId);
             return _mapper.Map<IEnumerable<UrlDto>>(urls);
         }
+
+       
     }
 }
