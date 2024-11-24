@@ -1,0 +1,35 @@
+.login-page {
+  max-width: 700px;
+  margin:  auto;
+  padding: 20px;
+  text-align: center;
+  
+}
+
+.login-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.register-button button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #28a745; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+
+.register-button button:hover {
+  background-color: #218838; 
+  
+}
+
+/* Ефект при кліку */
+.register-button button:active {
+  background-color: #1e7e34; 
+  transform: scale(1); 
+}

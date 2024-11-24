@@ -1,0 +1,14 @@
+.dashboard-page {
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  
+  .dashboard-page h1 {
+    font-size: 2rem;
+    color: #212529;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-page .add-url-form {
+    margin-bottom: 20px;
+  }
