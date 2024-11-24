@@ -39,7 +39,6 @@ namespace DAL
                 .IsUnique();
         }
 
-        // Перевизначення SaveChangesAsync для автоматичного встановлення CreatedAt
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var entries = ChangeTracker.Entries()

@@ -53,7 +53,6 @@ namespace BLL.Services
             if (user == null)
                 throw new Exception("Користувача не знайдено.");
 
-            // Перевірка унікальності імені користувача та емейлу
             if (user.UserName != updateUserDto.UserName && await _unitOfWork.Users.GetByUserNameOrEmailAsync(updateUserDto.UserName) != null)
             {
                 throw new Exception("Ім'я користувача вже використовується.");

@@ -15,7 +15,6 @@ import { fetchUrls, createUrl, deleteUrl } from "../../Api/urlApi";
 function* handleFetchUrls(): Generator<any, void, any> {
     try {
         const response = yield call(fetchUrls);
-        console.log(response.data);
         
         yield put(fetchUrlsSuccess(response.data));
     } catch (error: any) {
@@ -26,12 +25,9 @@ function* handleFetchUrls(): Generator<any, void, any> {
 function* handleCreateUrl(action: any): Generator<any, void, any> {
     try {
         const response = yield call(createUrl, action.payload);
-        console.log('response in handleCreateUrl',response);
         
         yield put(createUrlSuccess(response.data));
     } catch (error: any) {
-        console.log(error.message);
-        
         yield put(createUrlFailure(error.message));
     }
 }

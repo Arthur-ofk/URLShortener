@@ -40,7 +40,6 @@ namespace URLShortener.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
-            // Перевірка прав доступу
             var currentUserId = Guid.Parse(User.FindFirst("UserId").Value);
             var userRole = User.FindFirst("Role").Value;
 
