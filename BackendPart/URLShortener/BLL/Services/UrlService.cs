@@ -41,7 +41,7 @@ namespace BLL.Services
 
         public async Task<Url> CreateUrlAsync(UrlForCreationDto urlForCreationDto, Guid userId)
         {
-            if (await UrlExistsAsync(urlForCreationDto.OriginalUrl))
+            if (await UrlExistsAsync(urlForCreationDto.OriginalUrl,userId))
                 throw new Exception("Такий URL вже існує.");
 
             string shortUrl;
@@ -76,9 +76,9 @@ namespace BLL.Services
             return true;
         }
 
-        public async Task<bool> UrlExistsAsync(string originalUrl)
+        public async Task<bool> UrlExistsAsync(string originalUrl, Guid userId)
         {
-            var urls = await _unitOfWork.Urls.FindAsync(u => u.OriginalUrl == originalUrl);
+            var urls = await _unitOfWork.Urls.FindAsync(u => u.OriginalUrl == originalUrl && u.CreatedByUserId == userId);
             return urls.Any();
         }
 

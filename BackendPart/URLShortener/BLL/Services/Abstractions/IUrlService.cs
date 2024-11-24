@@ -14,7 +14,7 @@ namespace BLL.Services.Abstractions
         Task<UrlDto> GetUrlByIdAsync(Guid id);
         Task<Url> CreateUrlAsync(UrlForCreationDto urlForCreationDto, Guid userId);
         Task<bool> DeleteUrlAsync(Guid id, Guid userId, string userRole);
-        Task<bool> UrlExistsAsync(string originalUrl);
+        Task<bool> UrlExistsAsync(string originalUrl,Guid userId);
         Task<bool> ShortUrlExistsAsync(string shortUrl);
         Task<string> GetOriginalUrlAsync(string shortUrl);
         Task<IEnumerable<UrlDto>> GetUrlsByUserIdAsync(Guid userId);
