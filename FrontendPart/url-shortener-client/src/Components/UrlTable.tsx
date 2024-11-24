@@ -12,7 +12,7 @@ const UrlTable: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { urls, loading } = useSelector((state: RootState) => state.urls);
-
+    
     useEffect(() => {
         dispatch(fetchUrlsRequest());
     }, [dispatch]);

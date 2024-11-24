@@ -3,13 +3,13 @@ import { LOGIN_REQUEST, loginSuccess, loginFailure, REGISTER_REQUEST, LoginReque
 import { login, logout, register } from "../../Api/authApi";
 import { log } from "console";
 import { fetchUrls } from "../../Api/urlApi";
+import { fetchUrlsRequest } from "../actions/urlActions";
 
 function* handleLogin(action: LoginRequestAction): Generator<any, void, any> {
   try {
-    console.log("handlinglogin",action);
-    
     const response = yield call(login, action.payload);
     yield put(loginSuccess(response.data));
+    yield put(fetchUrlsRequest());
 } catch (error: any) {
     if (error.response && error.response.status === 400) {
 
@@ -24,10 +24,8 @@ function* handleLogin(action: LoginRequestAction): Generator<any, void, any> {
 }
 function* handleLogout(): Generator<any, void, any>{
   try {
-      console.log("Saga: handleLogout started");
-      yield call(logout); // Викликаємо функцію logout
-      console.log("Saga: logout executed");
-      yield put(logoutSuccess()); // Відправляємо екшен успішного виходу
+      yield call(logout);
+      yield put(logoutSuccess());
     } catch (error: any) {
       console.error("Logout error in saga:", error.message);
     }
