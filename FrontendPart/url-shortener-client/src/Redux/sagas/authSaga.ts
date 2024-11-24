@@ -34,7 +34,6 @@ function* handleRegister(action: any): Generator<any, void, any> {
   try {
     const response = yield call(register, action.payload);
     yield put(registerSuccess(response.data.message));
-    window.alert("Registration successful! Redirecting to login...");
     window.location.href = "/login";
   } catch (error: any) {
     yield put(registerFailure(error.response?.data?.message || "Registration failed"));
