@@ -9,7 +9,7 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
-
+export const CLEAR_ERROR = "CLEAR_ERROR";
 export interface LoginRequestAction {
     type: typeof LOGIN_REQUEST;
     payload: LoginPayload;
@@ -48,8 +48,8 @@ export const loginRequest = createAction<{ userNameOrEmail: string; password: st
 
 export const loginSuccess = createAction<{ user: any }>("LOGIN_SUCCESS");
 
-export const loginFailure = createAction<{ error: string }>("LOGIN_FAILURE");
-
+export const loginFailure = createAction<{}>("LOGIN_FAILURE");
+export const clearError = createAction("CLEAR_ERROR");
 export const registerRequest = (payload: RegisterPayload): RegisterRequestAction => ({
     type: REGISTER_REQUEST,
     payload,

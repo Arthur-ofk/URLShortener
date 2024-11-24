@@ -1,4 +1,4 @@
-import { takeLatest, call, put } from "redux-saga/effects";
+import { takeLatest, call, put, takeEvery } from "redux-saga/effects";
 import {
     FETCH_URLS_REQUEST,
     fetchUrlsSuccess,
@@ -15,6 +15,8 @@ import { fetchUrls, createUrl, deleteUrl } from "../../Api/urlApi";
 function* handleFetchUrls(): Generator<any, void, any> {
     try {
         const response = yield call(fetchUrls);
+        console.log(response.data);
+        
         yield put(fetchUrlsSuccess(response.data));
     } catch (error: any) {
         yield put(fetchUrlsFailure(error.message));
@@ -24,8 +26,12 @@ function* handleFetchUrls(): Generator<any, void, any> {
 function* handleCreateUrl(action: any): Generator<any, void, any> {
     try {
         const response = yield call(createUrl, action.payload);
+        console.log('response in handleCreateUrl',response);
+        
         yield put(createUrlSuccess(response.data));
     } catch (error: any) {
+        console.log(error.message);
+        
         yield put(createUrlFailure(error.message));
     }
 }
@@ -40,7 +46,10 @@ function* handleDeleteUrl(action: any): Generator<any, void, any> {
 }
 
 export default function* urlSaga() {
-    yield takeLatest(FETCH_URLS_REQUEST, handleFetchUrls);
-    yield takeLatest(CREATE_URL_REQUEST, handleCreateUrl);
-    yield takeLatest(DELETE_URL_REQUEST, handleDeleteUrl);
+
+    yield takeEvery(FETCH_URLS_REQUEST, handleFetchUrls);
+    yield takeEvery(CREATE_URL_REQUEST, handleCreateUrl);
+    yield takeEvery(DELETE_URL_REQUEST, handleDeleteUrl);
+   
+
 }

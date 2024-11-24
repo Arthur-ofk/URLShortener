@@ -23,8 +23,9 @@ export default function urlReducer(state = initialState, action: any): UrlState 
         case CREATE_URL_REQUEST:
         case DELETE_URL_REQUEST:
             return { ...state, loading: true };
-        case FETCH_URLS_SUCCESS:
+        case FETCH_URLS_SUCCESS:{
             return { urls: action.urls, loading: false, error: null };
+        }
         case CREATE_URL_SUCCESS:
             return { ...state, urls: [...state.urls, action.url], loading: false };
         case DELETE_URL_SUCCESS:

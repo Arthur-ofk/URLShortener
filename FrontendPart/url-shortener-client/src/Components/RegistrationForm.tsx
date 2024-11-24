@@ -18,7 +18,7 @@ const RegistrationForm: React.FC = () => {
       dispatch(registerRequest({ userName, email, phoneNumber, password }));
     };
   
-    return (
+    return (<div className="register-form">
       <form onSubmit={handleSubmit}>
         <div>
           <label>User Name:</label>
@@ -60,6 +60,8 @@ const RegistrationForm: React.FC = () => {
         
         {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
+    </div>
+      
     );
   };
 export default RegistrationForm;
